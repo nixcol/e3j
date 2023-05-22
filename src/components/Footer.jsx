@@ -1,3 +1,5 @@
+import copyright from '../assets/copyright.svg'
+import { Socials } from './Socials'
 import styled from "styled-components";
 
 export const Container = styled.footer`
@@ -23,3 +25,20 @@ export const Container = styled.footer`
     font-weight: 600;
   }
 `
+
+export function Footer() {
+  return (
+    <Container>
+      <div className="cp">
+        <img src={copyright} alt="copyright" />
+        <span>2023</span>
+      </div>
+
+      <Socials />
+
+      <p>CNPJ - 29.162.362/0001-60</p>
+
+    </Container>
+  )
+
+}

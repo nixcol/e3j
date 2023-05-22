@@ -6,10 +6,10 @@ import { PsResult } from "./components/PsResult"
 function App() {
   return (
     <>
-    <Header/>
-    <About/>
-    <PsResult/>
-    <Footer/>
+      <Header />
+      <About />
+      <PsResult />
+      <Footer />
     </>
   )
 }
