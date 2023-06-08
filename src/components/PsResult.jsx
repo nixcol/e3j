@@ -3,7 +3,7 @@ import arrowight from '../assets/right.svg'
 import styled from "styled-components";
 
 export const Container = styled.section`
-  width: 100vw;
+  max-width: 100vw;
   display: flex;
   align-items: center;
   background-color: gray;
@@ -18,7 +18,7 @@ export const Container = styled.section`
 `
 
 export const Wrapper = styled.div`
-  width: 95%; // ta foda 
+  width: 100%;
   background-color: #727070;
   color: #fff;
   display: flex;

@@ -1,14 +1,19 @@
-import { Socials } from './Socials'
 import styled from "styled-components";
-
+import { useLocation } from 'react-router-dom';
+import { useState } from "react";
+import { Link } from 'react-router-dom';
+import { Socials } from './Socials'
+import { Button } from "./Button";
+import logo from '../assets/logo.svg'
 
 export const Container = styled.header`
-  width:100%;
+  max-width:100%;
   height: 116px;
-  background-color: #D9D9D9CC;
-  color: #000000;
+  background-color: ${({theme}) => theme.colors.black};
+  color: ${({theme}) => theme.colors.white};
   display: flex;
   align-items: center;
+  padding: 0px 56px 0px 200px;
 
   ul {
     list-style: none;
@@ -16,20 +21,7 @@ export const Container = styled.header`
 
   a {
     text-decoration: none;
-    color: #000000;
-  }
-
-  .logo {
-    background-color: #BBBBBB;
-    width: 93px;
-    height: 93px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-transform: uppercase;
-    margin-left: 130px;
-    margin-right: 250px;
+    color: ${({theme}) => theme.colors.white};
   }
 
   .sections {
@@ -38,50 +30,83 @@ export const Container = styled.header`
     font-size: 18px;
     text-transform: uppercase;
     letter-spacing: .2em;
-    font-weight: 300;
     margin-right: 200px;
+    position: relative;
+    z-index: 1;
+  }
 
-    li {
-      &:hover{
-        scale: 1.02;
+  .sections li {
+
+    .modal {
+      position: absolute;
+      top: 0;
+      right: 210px;
+      z-index: 100;
+      background-color: #F6EB37;
+      padding: 12px 15px;
+
+      ul {  
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      a {
+        color: #000000;
       }
     }
+
   }
+  
+  `
+  export const Logo = styled.img`
+    width: 93px;
+    height: 93px;
+    margin-right: 135px;
+  `
 
-  button {
-    color:  rgba(217, 217, 217, 0.8);
-    background: #000000;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    font-size: 16px;
-    font-weight: 600;
-    letter-spacing: .2em;
-    text-transform: uppercase;
-    padding: 16px 24px;
-    border-radius: 5px;
-    margin-right: 45px;
-
-    &:hover {
-      scale: 1.05;
-    }
-  }
-
-`
+  export const Nav = styled.nav`
+    
+  `
 
 export function Header() {
+  const location = useLocation();
+  
+  const [openModal, setOpenModal] = useState(false)
+
+  function getFontWeight(path) {
+    return location.pathname === path ? '700' : '300';
+  };
+
+  function modalHandler() {
+    setOpenModal(true)
+  }
+
+
   return (
     <Container>
-      <div className="logo">
-        logo
-      </div>
+      <Logo src={logo}/>
 
-      <ul className='sections'>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Serviços</a></li>
-        <li><a href="#">Conheça-nos</a></li>
-        <li><a href="#">Blog</a></li>
-        <li><a href="#">Contato</a></li>
+      <ul className='sections' >
+        <li style={{ fontWeight: getFontWeight('/') }}><Link to='/'>Home</Link></li> 
+        <li style={{ fontWeight: getFontWeight('/services') }}><Link to='/services'>Serviços</Link></li>
+        <li style={{ fontWeight: getFontWeight('/about') }} onClick={modalHandler}><Link>Conheça-nos</Link>
+            <div className="modal" style={openModal ? {display: 'flex'} : {display: 'none'}}>
+              <ul className="modal-list">
+              <li><Link to='#about'>Quem somos?</Link></li> 
+              <li><Link to='/'>Nossa Equipe</Link></li> 
+              <li><Link to='/'>Parceiros</Link></li> 
+              </ul>
+            </div>
+        </li>
+        <li style={{ fontWeight: getFontWeight('/blog') }}><Link to='/blog'>Blog</Link></li>
+        <li style={{ fontWeight: getFontWeight('/contact') }}><Link to='/contact'>Contato</Link></li>
       </ul>
-      <button>Cadastre-se</button>
+
+      <Link to='/budget'>
+      <Button text="Cadastre-se" color="#000000" backgroundColor="#F6EB37" padding="16px 24px" fontSize="16px"/>
+      </Link>
 
       <Socials />
     </Container>

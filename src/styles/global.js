@@ -8,7 +8,23 @@ export default createGlobalStyle`
   }
 
   body {
+    max-width: 100vw;
+    height: 100vh;
     font-family: 'Lato', sans-serif;
-    overflow-x: hidden;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    overflow-y: auto;
+    scrollbar-width: none;
+    &::-webkit-scrollbar{
+      display: none;
   }
+
+  ul {
+    list-style: none;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
 `

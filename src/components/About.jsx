@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Button } from "./Button";
 
 export const Container = styled.section`
   background-color: #BFBEBE;
@@ -66,7 +67,7 @@ export function About() {
       <Left>
         <h1>Quem somos?</h1>
         <p>Quem somos quem somos quem somos quem somos quem somos quem somos quem somos quem somos quem somos quem somos quem somos quem somos quem somos.  </p>
-        <button>Cadastre-se</button>
+        <Button text="Cadastre-se" color='#D9D9D9' backgroundColor="#000000" padding="20px 24px" fontSize="25px"/>
       </Left>
       <Right>
         <div className="img"></div>
