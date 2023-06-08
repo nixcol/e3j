@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Link } from 'react-router-dom';
 import { Socials } from './Socials'
 import { Button } from "./Button";
-import logo from '../assets/logo.svg'
+import logo from '../assets/Logo.svg'
 
 export const Container = styled.header`
   max-width:100%;
